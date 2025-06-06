@@ -82,7 +82,7 @@ The final structure should look like this:
 ---
 ## E. Preparing the WebSocket Client and Running with Docker for testing
 
-### Running Docker
+### I. Running Docker
 Follow these steps to build the Docker image and run the application.
 
 #### **Step 1: Build the Docker Image**
@@ -116,7 +116,7 @@ This command starts a container named **lipsync-container** and maps port **8000
 #### **Step 3: Testing**
       Check the next section to understand how to test with data.
 
-### Preparing the WebSocket Client
+### II. Preparing the WebSocket Client
 Follow these steps to prepare WebSocket and run the application.
 #### **Step 1: Run the `main.py` file**
 
