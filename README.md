@@ -4,7 +4,7 @@ This project implements a real-time lip-syncing WebSocket API using a Generative
 
 > **Note**: This is my first project utilizing **Docker** for containerization and building a Python-based **WebSocket API** with FastAPI. I'm excited to have brought this concept to life and welcome any feedback.
 
-## Features
+## A. Features
 
 * **WebSocket API Endpoint**: Accepts a Base64-encoded image and a Base64-encoded audio string for real-time processing.
 * **AI-Powered Lip-Sync**: Utilizes the **Wav2Lip** model to generate a lip-synced video from a single static image and an audio file.
@@ -13,7 +13,7 @@ This project implements a real-time lip-syncing WebSocket API using a Generative
 
 ---
 
-## Prerequisites
+## B. Prerequisites
 
 ### **1. FFmpeg Installation (Crucial!)**
 
@@ -30,7 +30,7 @@ You must have Docker installed and running on your system to build and run the c
 
 ---
 
-## How the System Works
+## C. How the System Works
 
 The system is designed as a client-server application that communicates over WebSockets.
 
@@ -48,7 +48,7 @@ The system is designed as a client-server application that communicates over Web
 
 ---
 
-## Preparing the WebSocket Client
+## D. Preparing the WebSocket Client
 
 ### **Step 1: Run the `main.py` file**
 
@@ -59,7 +59,7 @@ You can run this script using terminal or directly in visual studio code , pycha
 This will use the `ws_client_test.py` script in order to test with image and sound data. You will find the **Testing Instruction** below
    
 ---
-## Installation and Running with Docker
+## E. Installation and Running with Docker
 
 Follow these steps to build the Docker image and run the application.
 
@@ -125,7 +125,7 @@ This command starts a container named **lipsync-container** and maps port **8000
       Check the next section to understand how to test with data.
 ---
 
-## **Testing for both Docker and WebSocket client**
+## F. Testing for both Docker and WebSocket client
 
 ### **Input Flexibility**
 
@@ -166,7 +166,7 @@ A Python test script, `ws_client_test.py`, is provided to interact with the API.
 
 ---
 
-## Results and Future Improvements
+## G. Results and Future Improvements
 
 The final result of this project successfully achieves the main objective: the lips of the person in the input image are animated to sync with the provided audio.
 
