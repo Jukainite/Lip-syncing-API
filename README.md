@@ -1,0 +1,151 @@
+# Real-Time Lip-Syncing WebSocket API
+
+This project implements a real-time lip-syncing WebSocket API using a Generative AI model (Wav2Lip) to animate a person's image based on audio input.
+
+> **Note**: This is my first project utilizing **Docker** for containerization and building a Python-based **WebSocket API** with FastAPI. I'm excited to have brought this concept to life and welcome any feedback.
+
+## Features
+
+* **WebSocket API Endpoint**: Accepts a Base64-encoded image and a Base64-encoded audio string for real-time processing.
+* **AI-Powered Lip-Sync**: Utilizes the **Wav2Lip** model to generate a lip-synced video from a single static image and an audio file.
+* **Base64 I/O**: Both the input (image, audio) and output (video) are handled as Base64-encoded strings as per the requirements.
+* **Python Framework**: Built with **FastAPI** for its high performance and robust support for asynchronous operations and WebSockets.
+* **Containerized**: Fully containerized using **Docker**, ensuring a consistent and reproducible environment.
+
+---
+
+## Prerequisites
+
+### **1. FFmpeg Installation (Crucial!)**
+
+Before proceeding, you **must have FFmpeg installed** on your system, and its executable must be available in your system's PATH. The application relies on FFmpeg for audio and video processing.
+
+You can download it from the official website: [https://ffmpeg.org/download.html](https://ffmpeg.org/download.html)
+
+### **2. Docker Installation**
+
+You must have Docker installed and running on your system to build and run the containerized application.
+
+* **Docker Desktop** for Windows/macOS.
+* **Docker Engine** for Linux.
+
+---
+
+## How the System Works
+
+The system is designed as a client-server application that communicates over WebSockets.
+
+1.  **Client-Side**: A client (like the provided `ws_client_test.py`) initiates a WebSocket connection to the server. It sends a JSON payload containing two keys:
+    * `image_base64`: A Base64-encoded string of the person's image.
+    * `audio_base64`: A Base64-encoded string of the audio.
+2.  **Server-Side (FastAPI)**:
+    * The FastAPI server receives the Base64 data.
+    * It decodes the data into temporary image and audio files.
+    * It then invokes the core lip-syncing logic by running the `Wav2Lip/inference.py` script as a **subprocess**. This script uses the powerful **Wav2Lip-SD-GAN** model to generate a video where the person's lips in the image are synchronized with the provided audio.
+    * The resulting output video file is read by the server.
+3.  **Returning the Result**:
+    * The server encodes the output video file back into a Base64 string.
+    * This Base64 string is sent back to the client in a JSON response. The client can then decode this string to retrieve the final video.
+
+---
+
+## Installation and Running with Docker
+
+Follow these steps to build the Docker image and run the application.
+
+### **Step 1: Clone the Repository**
+
+First, clone this repository to your local machine or ensure all project files (`main.py`, `Dockerfile`, the `Wav2Lip` directory, etc.) are in a single project folder.
+
+### **Step 2: Prepare the Pre-trained Model**
+
+The application requires a pre-trained Wav2Lip model checkpoint.
+
+1.  Download the **Wav2Lip-SD-GAN.pt** checkpoint file. This is the model used for inference.
+2.  Create a `checkpoints` directory inside the `Wav2Lip` folder.
+3.  Place the downloaded `Wav2Lip-SD-GAN.pt` file into the `Wav2Lip/checkpoints/` directory.
+
+The final structure should look like this:
+
+```
+.
+├── Wav2Lip/
+│   ├── checkpoints/
+│   │   └── Wav2Lip-SD-GAN.pt
+│   └── inference.py
+├── main.py
+├── Dockerfile
+└── ...
+```
+
+### **Step 3: Build the Docker Image**
+
+Open a terminal or command prompt in the project's root directory (where the `Dockerfile` is located) and run the following command:
+
+```bash
+docker build -t lipsync-api .
+```
+
+This command builds a Docker image named **lipsync-api** from the `Dockerfile`. This process may take several minutes as it installs all necessary dependencies.
+
+### **Step 4: Run the Docker Container**
+
+Once the image is built, run the application with this command:
+
+**To run on CPU:**
+
+```bash
+docker run -p 8000:8000 --name lipsync-container lipsync-api
+```
+
+**To run with an NVIDIA GPU (requires NVIDIA Container Toolkit):**
+
+```bash
+docker run --gpus all -p 8000:8000 --name lipsync-container lipsync-api
+```
+
+This command starts a container named **lipsync-container** and maps port **8000** on your local machine to port **8000** inside the container. The server is now running and accessible at `ws://localhost:8000/ws/lipsync`.
+
+---
+
+## How to Test Using the WebSocket Client
+
+A Python test script, `ws_client_test.py`, is provided to interact with the API.
+
+### **Input Flexibility**
+
+The client is designed to be flexible and can accept input in three different ways for both the image and audio arguments:
+
+1.  **Direct File Path**: e.g., `my_image.jpg`, `my_audio.wav`
+2.  **Path to a Text File**: A path to a `.txt` or `.b64` file containing the Base64 string.
+3.  **Raw Base64 String**: The full Base64 string passed directly as an argument.
+
+### **Testing Steps**
+
+1.  **Ensure the server is running** in Docker as described above.
+
+2.  **Run the client script from your terminal.** Here are examples for each input method:
+
+    **Method A: Using original file paths (easiest)**
+    The script will automatically encode the files to Base64.
+
+    ```bash
+    python ws_client_test.py path/to/your/image.jpg path/to/your/audio.wav
+    ```
+
+    **Method B: Using text files containing Base64 strings**
+    First, create the Base64 text files:
+
+    ```bash
+    # On Linux/macOS
+    base64 -i path/to/your/image.jpg > image.b64
+    base64 -i path/to/your/audio.wav > audio.b64
+    ```
+
+    Then, run the client with the paths to these new files:
+
+    ```bash
+    python ws_client_test.py image.b64 audio.b64
+    ```
+
+3.  **Check the Output**: Upon successful execution, the script will create a file named **output_video.b64** (or the name you provide as a third argument). This text file contains the Base64-encoded string of the final video. You can use an online Base64 decoder to convert this string back into an `.mp4` file to view the result.
