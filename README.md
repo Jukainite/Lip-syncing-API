@@ -138,16 +138,7 @@ The client is designed to be flexible and can accept input in three different wa
     ```
 
     **Method B: Using text files containing Base64 strings**
-    First, create the Base64 text files:
-
-    ```bash
-    # On Linux/macOS
-    base64 -i path/to/your/image.jpg > image.b64
-    base64 -i path/to/your/audio.wav > audio.b64
-    ```
-
-    Then, run the client with the paths to these new files:
-
+    
     ```bash
     python ws_client_test.py image.b64 audio.b64
     ```
