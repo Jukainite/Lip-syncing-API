@@ -48,21 +48,7 @@ The system is designed as a client-server application that communicates over Web
 
 ---
 
-## D. Preparing the WebSocket Client
-
-### **Step 1: Run the `main.py` file**
-
-You can run this script using terminal or directly in visual studio code , pychar, etc
-
-### **Step 2: Testing**
-
-This will use the `ws_client_test.py` script in order to test with image and sound data. You will find the **Testing Instruction** below
-   
----
-## E. Installation and Running with Docker
-
-Follow these steps to build the Docker image and run the application.
-
+## D.  Installation
 ### **Step 1: Clone the Repository**
 
 First, clone this repository to your local machine or ensure all project files (`main.py`, `Dockerfile`, the `Wav2Lip` directory, etc.) are in a single project folder.
@@ -92,8 +78,14 @@ The final structure should look like this:
 ├── Dockerfile
 └── ...
 ```
+   
+---
+## E. Preparing the WebSocket Client and Running with Docker for testing
 
-### **Step 3: Build the Docker Image**
+### Running Docker
+Follow these steps to build the Docker image and run the application.
+
+#### **Step 1: Build the Docker Image**
 
 Open a terminal or command prompt in the project's root directory (where the `Dockerfile` is located) and run the following command:
 
@@ -103,7 +95,7 @@ docker build -t lipsync-api .
 
 This command builds a Docker image named **lipsync-api** from the `Dockerfile`. This process may take several minutes as it installs all necessary dependencies.
 
-### **Step 4: Run the Docker Container**
+#### **Step 2: Run the Docker Container**
 
 Once the image is built, run the application with this command:
 
@@ -121,8 +113,18 @@ docker run --gpus all -p 8000:8000 --name lipsync-container lipsync-api
 
 This command starts a container named **lipsync-container** and maps port **8000** on your local machine to port **8000** inside the container. The server is now running and accessible at `ws://localhost:8000/ws/lipsync`.
 
-### **Step 5: Testing**
+#### **Step 3: Testing**
       Check the next section to understand how to test with data.
+
+### Preparing the WebSocket Client
+Follow these steps to prepare WebSocket and run the application.
+#### **Step 1: Run the `main.py` file**
+
+You can run this script using terminal or directly in visual studio code , pychar, etc
+
+#### **Step 2: Testing**
+
+This will use the `ws_client_test.py` script in order to test with image and sound data. You will find the **Testing Instruction** below
 ---
 
 ## F. Testing for both Docker and WebSocket client
