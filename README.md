@@ -150,3 +150,15 @@ The client is designed to be flexible and can accept input in three different wa
     ```
 
 3.  **Check the Output**: Upon successful execution, the script will create a file named **output_video.b64** (or the name you provide as a third argument). This text file contains the Base64-encoded string of the final video. You can use an online Base64 decoder to convert this string back into an `.mp4` file to view the result.
+
+---
+
+## Results and Future Improvements
+
+The final result of this project successfully achieves the main objective: the lips of the person in the input image are animated to sync with the provided audio.
+
+However, the visual quality of the generated output is not perfectly sharp or aesthetically pleasing. During my research, I found that many state-of-the-art implementations combine **Wav2Lip with a face restoration model like GFPGAN** to significantly enhance the sharpness and produce high-quality, realistic lip movements.
+
+Due to hardware and time constraints, I was unable to integrate this enhancement into the current API. A local test with a 1-minute audio clip took over 20 minutes to process on my machine, which highlighted the performance challenges of adding another deep learning model to the pipeline.
+
+For future work, integrating a lightweight face enhancement model or optimizing the pipeline for faster performance would be the next logical step to improve the final output quality.
