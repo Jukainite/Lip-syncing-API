@@ -143,4 +143,10 @@ The client is designed to be flexible and can accept input in three different wa
     python ws_client_test.py image.b64 audio.b64
     ```
 
+    **Method C: Using Base64 strings**
+    
+    ```bash
+    python ws_client_test.py "$IMG_B64" "$AUDIO_B64" 
+    ```
+
 3.  **Check the Output**: Upon successful execution, the script will create a file named **output_video.b64** (or the name you provide as a third argument). This text file contains the Base64-encoded string of the final video. You can use an online Base64 decoder to convert this string back into an `.mp4` file to view the result.
