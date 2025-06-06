@@ -48,8 +48,16 @@ The system is designed as a client-server application that communicates over Web
 
 ---
 
-## How to Test Using the WebSocket Client
+## Preparing the WebSocket Client
 
+### **Step 1: Run the `main.py` file**
+
+You can run this script using terminal or directly in visual studio code , pychar, etc
+
+### **Step 2: Testing**
+
+This will use the `ws_client_test.py` script in order to test with image and sound data. You will find the **Testing Instruction** below
+   
 ---
 ## Installation and Running with Docker
 
@@ -113,8 +121,11 @@ docker run --gpus all -p 8000:8000 --name lipsync-container lipsync-api
 
 This command starts a container named **lipsync-container** and maps port **8000** on your local machine to port **8000** inside the container. The server is now running and accessible at `ws://localhost:8000/ws/lipsync`.
 
+### **Step 5: Testing**
+      Check the next section to understand how to test with data.
 ---
 
+## **Testing for both Docker and WebSocket client**
 
 ### **Input Flexibility**
 
