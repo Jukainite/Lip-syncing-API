@@ -125,6 +125,7 @@ You can run this script using terminal or directly in visual studio code , pycha
 #### **Step 2: Testing**
 
 This will use the `ws_client_test.py` script in order to test with image and sound data. You will find the **Testing Instruction** below
+
 ---
 
 ## F. Testing for both Docker and WebSocket client
