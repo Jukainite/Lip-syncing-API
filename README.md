@@ -48,6 +48,9 @@ The system is designed as a client-server application that communicates over Web
 
 ---
 
+## How to Test Using the WebSocket Client
+
+---
 ## Installation and Running with Docker
 
 Follow these steps to build the Docker image and run the application.
@@ -112,21 +115,19 @@ This command starts a container named **lipsync-container** and maps port **8000
 
 ---
 
-## How to Test Using the WebSocket Client
 
-A Python test script, `ws_client_test.py`, is provided to interact with the API.
+### **Input Flexibility**
 
+The client is designed to be flexible and can accept input in three different ways for both the image and audio arguments:
+
+1.  **Direct File Path**: e.g., `my_image.jpg`, `my_audio.wav`
+2.  **Path to a Text File**: A path to a `.txt` or `.b64` file containing the Base64 string.
+3.  **Raw Base64 String**: The full Base64 string passed directly as an argument.
 
 
 ### **Testing Steps**
-   ## **Input Flexibility**
-
-      The client is designed to be flexible and can accept input in three different ways for both the image and audio arguments:
-      
-      1.  **Direct File Path**: e.g., `my_image.jpg`, `my_audio.wav`
-      2.  **Path to a Text File**: A path to a `.txt` or `.b64` file containing the Base64 string.
-      3.  **Raw Base64 String**: The full Base64 string passed directly as an argument.
-
+A Python test script, `ws_client_test.py`, is provided to interact with the API.
+  
 1.  **Ensure the server is running** in Docker as described above.
 
 2.  **Run the client script from your terminal.** Here are examples for each input method:
