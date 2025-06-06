@@ -157,7 +157,7 @@ The client is designed to be flexible and can accept input in three different wa
 
 The final result of this project successfully achieves the main objective: the lips of the person in the input image are animated to sync with the provided audio.
 
-However, the visual quality of the generated output is not perfectly sharp or aesthetically pleasing. During my research, I found that many state-of-the-art implementations combine **Wav2Lip with a face restoration model like GFPGAN** to significantly enhance the sharpness and produce high-quality, realistic lip movements.
+However, the visual quality of the generated output is not perfectly sharp or aesthetically pleasing. During my research, I found that many state-of-the-art implementations combine **Wav2Lip** with **GFPGAN** to significantly enhance the sharpness and produce high-quality, realistic lip movements.
 
 Due to hardware and time constraints, I was unable to integrate this enhancement into the current API. A local test with a 1-minute audio clip took over 20 minutes to process on my machine, which highlighted the performance challenges of adding another deep learning model to the pipeline.
 
