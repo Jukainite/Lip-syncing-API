@@ -9,7 +9,6 @@ This project implements a real-time lip-syncing WebSocket API using a Generative
 * **WebSocket API Endpoint**: Accepts a Base64-encoded image and a Base64-encoded audio string for real-time processing.
 * **AI-Powered Lip-Sync**: Utilizes the **Wav2Lip** model to generate a lip-synced video from a single static image and an audio file.
 * **Base64 I/O**: Both the input (image, audio) and output (video) are handled as Base64-encoded strings as per the requirements.
-* **Python Framework**: Built with **FastAPI** for its high performance and robust support for asynchronous operations and WebSockets.
 * **Containerized**: Fully containerized using **Docker**, ensuring a consistent and reproducible environment.
 
 ---
