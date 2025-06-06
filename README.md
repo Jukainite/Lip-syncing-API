@@ -41,7 +41,7 @@ The system is designed as a client-server application that communicates over Web
 2.  **Server-Side (FastAPI)**:
     * The FastAPI server receives the Base64 data.
     * It decodes the data into temporary image and audio files.
-    * It then invokes the core lip-syncing logic by running the `Wav2Lip/inference.py` script as a **subprocess**. This script uses the powerful **Wav2Lip-SD-GAN** model to generate a video where the person's lips in the image are synchronized with the provided audio.
+    * It then invokes the core lip-syncing logic by running the `Wav2Lip/inference.py` script as a **subprocess**. This script uses the powerful **Wav2Lip + GAN** model to generate a video where the person's lips in the image are synchronized with the provided audio.
     * The resulting output video file is read by the server.
 3.  **Returning the Result**:
     * The server encodes the output video file back into a Base64 string.
@@ -59,11 +59,16 @@ First, clone this repository to your local machine or ensure all project files (
 
 ### **Step 2: Prepare the Pre-trained Model**
 
-The application requires a pre-trained Wav2Lip model checkpoint.
+The application requires a pre-trained Wav2Lip model checkpoint to function. You can choose between two primary models, with download links available from the original Wav2Lip repository.
 
-1.  Download the **Wav2Lip-SD-GAN.pt** checkpoint file. This is the model used for inference.
-2.  Create a `checkpoints` directory inside the `Wav2Lip` folder.
-3.  Place the downloaded `Wav2Lip-SD-GAN.pt` file into the `Wav2Lip/checkpoints/` directory.
+| Model         | Description                                       | Link to the model                                                                                        |
+| :------------ | :------------------------------------------------- | :------------------------------------------------------------------------------------------------------- |
+| Wav2Lip       | Highly accurate lip-sync                           | [Link](https://drive.google.com/drive/folders/153HLrqlBNxzZcHi17PEvP09kkAfzRshM?usp=share_link)           |
+| Wav2Lip + GAN | Slightly inferior lip-sync, but better visual quality | [Link](https://drive.google.com/file/d/15G3U08c8xsCkOqQxE38Z2XXDnPcOptNk/view?usp=share_link) |
+
+**Recommendation**: For the best visual quality, it is recommended to use the **Wav2Lip + GAN** model (the link above is for `Wav2Lip-SD-GAN.pt`).
+
+After downloading your chosen model, place the downloaded weight file into the **`checkpoints`** folder, which is located inside the `Wav2Lip` directory.
 
 The final structure should look like this:
 
@@ -71,7 +76,7 @@ The final structure should look like this:
 .
 ├── Wav2Lip/
 │   ├── checkpoints/
-│   │   └── Wav2Lip-SD-GAN.pt
+│   │   └── Wav2Lip-SD-GAN.pt  <- Your downloaded model here
 │   └── inference.py
 ├── main.py
 ├── Dockerfile
