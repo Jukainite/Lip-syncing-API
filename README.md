@@ -111,10 +111,12 @@ docker run -p 8000:8000 --name lipsync-container lipsync-api
 docker run --gpus all -p 8000:8000 --name lipsync-container lipsync-api
 ```
 
+
 This command starts a container named **lipsync-container** and maps port **8000** on your local machine to port **8000** inside the container. The server is now running and accessible at `ws://localhost:8000/ws/lipsync`.
 
 #### **Step 3: Testing**
-      Check the next section to understand how to test with data.
+
+Check the next section to understand how to test with data using the `ws_client_test.py` script.
 
 ### II. Preparing the WebSocket Client
 Follow these steps to prepare WebSocket and run the application.
