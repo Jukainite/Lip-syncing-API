@@ -67,7 +67,7 @@ The application requires a pre-trained Wav2Lip model checkpoint to function. You
 
 **Recommendation**: For the best visual quality, it is recommended to use the **Wav2Lip + GAN** model (the link above is for `Wav2Lip-SD-GAN.pt`).
 
-After downloading your chosen model, place the downloaded weight file into the **`checkpoints`** folder, which is located inside the `Wav2Lip` directory. You can change which model to use in the main.py file
+After downloading your chosen model, place the downloaded weight file into the **`checkpoints`** folder, which is located inside the `Wav2Lip` directory. You can change which model to use in the `main.py` file
 
 The final structure should look like this:
 
