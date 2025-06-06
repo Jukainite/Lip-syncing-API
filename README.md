@@ -134,7 +134,7 @@ The client is designed to be flexible and can accept input in three different wa
     The script will automatically encode the files to Base64.
 
     ```bash
-    python ws_client_test.py path/to/your/image.jpg path/to/your/audio.wav
+    python ws_client_test.py <path/to/your/image.jpg> <path/to/your/audio.wav>
     ```
 
     **Method B: Using text files containing Base64 strings**
